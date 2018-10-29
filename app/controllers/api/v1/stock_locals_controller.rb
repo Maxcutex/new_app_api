@@ -1,51 +1,70 @@
-class StockLocalsController < ApplicationController
-  before_action :set_stock_local, only: [:show, :update, :destroy]
+# frozen_string_literal: true
 
-  # GET /stock_locals
-  def index
-    @stock_locals = StockLocal.all
+# module Api
+module Api
+  # module v1
+  module V1
+    # stock local controller
+    class StockLocalsController < ApplicationController
+      before_action :set_stock_local, only: [:show, :update, :destroy]
 
-    render json: @stock_locals
-  end
+      # GET /stock_locals
+      def index
+        @stock_locals = StockLocal.all
 
-  # GET /stock_locals/1
-  def show
-    render json: @stock_local
-  end
+        render json: @stock_locals
+      end
 
-  # POST /stock_locals
-  def create
-    @stock_local = StockLocal.new(stock_local_params)
+      # GET /stock_locals/1
+      def show
+        render json: @stock_local
+      end
 
-    if @stock_local.save
-      render json: @stock_local, status: :created, location: @stock_local
-    else
-      render json: @stock_local.errors, status: :unprocessable_entity
+      # POST /stock_locals
+      def create
+        @stock_local = StockLocal.new(stock_local_params)
+
+        if @stock_local.save
+          render json: @stock_local, status: :created, location: @stock_local
+        else
+          render json: @stock_local.errors, status: :unprocessable_entity
+        end
+      end
+
+      # PATCH/PUT /stock_locals/1
+      def update
+        if @stock_local.update(stock_local_params)
+          render json: @stock_local
+        else
+          render json: @stock_local.errors, status: :unprocessable_entity
+        end
+      end
+
+      # DELETE /stock_locals/1
+      def destroy
+        @stock_local.destroy
+      end
+
+      private
+
+      # Use callbacks to share common setup or constraints between actions.
+      def set_stock_local
+        @stock_local = StockLocal.find(params[:id])
+      end
+
+      # Only allow a trusted parameter "white list" through.
+      def stock_local_params
+        params.require(:stock_local)
+              .permit(
+                :sec_code, :sec_name, :exchange_code, :asset_class_coce,
+                :address_1, :registrar, :capitalization,
+                :main_sector, :sub_sector, :contact, :description, :tier_code,
+                :par_value, :list_date, :outstanding_shares, :grp_code,
+                :address_2, :address_3, :state_code, :website, :email, :gsm,
+                :regis_close, :year_end, :logo, :shares_in_issue,
+                :view_count, :fax_no, :land_tel
+              )
+      end
     end
   end
-
-  # PATCH/PUT /stock_locals/1
-  def update
-    if @stock_local.update(stock_local_params)
-      render json: @stock_local
-    else
-      render json: @stock_local.errors, status: :unprocessable_entity
-    end
-  end
-
-  # DELETE /stock_locals/1
-  def destroy
-    @stock_local.destroy
-  end
-
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_stock_local
-      @stock_local = StockLocal.find(params[:id])
-    end
-
-    # Only allow a trusted parameter "white list" through.
-    def stock_local_params
-      params.require(:stock_local).permit(:sec_code, :sec_name, :exchange_code, :asset_class_coce, :main_sector, :sub_sector, :contact, :description, :tier_code, :par_value, :list_date, :outstanding_shares, :grp_code, :registrar, :address_1, :address_2, :address_3, :state_code, :website, :email, :gsm, :land_tel, :fax_no, :regis_close, :year_end, :logo, :shares_in_issue, :capitalization, :view_count)
-    end
 end

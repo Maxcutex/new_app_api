@@ -10,15 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_26_225602) do
+ActiveRecord::Schema.define(version: 2018_10_29_115840) do
+
+  create_table "industries", force: :cascade do |t|
+    t.string "industry_name"
+    t.string "exchange_code"
+    t.string "sync_flag"
+    t.string "logo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "main_sectors", force: :cascade do |t|
+    t.string "sector_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "stock_locals", force: :cascade do |t|
     t.string "sec_code"
     t.string "sec_name"
     t.string "exchange_code"
     t.string "asset_class_coce"
-    t.integer "main_sector"
-    t.integer "sub_sector"
     t.string "contact"
     t.string "description"
     t.string "tier_code"
@@ -44,6 +57,18 @@ ActiveRecord::Schema.define(version: 2018_10_26_225602) do
     t.integer "view_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "industry_id"
+    t.integer "sub_sector_id"
+    t.index ["industry_id"], name: "index_stock_locals_on_industry_id"
+    t.index ["sub_sector_id"], name: "index_stock_locals_on_sub_sector_id"
+  end
+
+  create_table "sub_sectors", force: :cascade do |t|
+    t.string "sub_sector_name"
+    t.integer "main_sector_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["main_sector_id"], name: "index_sub_sectors_on_main_sector_id"
   end
 
 end
