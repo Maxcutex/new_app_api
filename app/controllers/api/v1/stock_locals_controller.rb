@@ -6,7 +6,7 @@ module Api
   module V1
     # stock local controller
     class StockLocalsController < ApplicationController
-      before_action :set_stock_local, only: [:show, :update, :destroy]
+      before_action :set_stock_local, only: %i[show update destroy]
 
       # GET /stock_locals
       def index

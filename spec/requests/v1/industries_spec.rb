@@ -51,17 +51,24 @@ RSpec.describe 'Industries', type: :request do
     # Test suite for POST /api/v1/industries
     describe 'POST /api/v1/industries' do
       # valid payload
-      let(:valid_attributes) {
+      let!(:valid_attributes) {
         {
           industry_name: 'Finance', exchange_code: 'EQ',
           sync_flag: 'ON', logo: 'logo'
         }
       }
 
+      let!(:invalid_attributes) {
+        {
+          industry_name: 'Agriculture'
+        }
+      }
+      
       context 'when the request is valid' do
-        before { post '/api/v1/industries', params: valid_attributes }
+        before { post api_v1_industries_path, params: { industry: valid_attributes } }
 
-        it 'creates a todo' do
+        it 'creates an industry' do
+          
           expect(json['industry_name']).to eq('Finance')
         end
 
@@ -71,15 +78,16 @@ RSpec.describe 'Industries', type: :request do
       end
 
       context 'when the request is invalid' do
-        before { post '/api/v1/industries', params: { industry_name: 'Agriculture' } }
+        before { post '/api/v1/industries', params: { industry: invalid_attributes } }
 
         it 'returns status code 422' do
           expect(response).to have_http_status(422)
         end
 
         it 'returns a validation failure message' do
+          
           expect(response.body)
-            .to match(/Validation failed: Created by can't be blank/)
+            .to match("{\"exchange_code\":[\"can't be blank\"]}")
         end
       end
     end
@@ -89,14 +97,15 @@ RSpec.describe 'Industries', type: :request do
       let(:valid_attributes) { { industry_name: 'Beverages' } }
 
       context 'when the record exists' do
-        before { put api_v1_industry_path(industry_id), params: valid_attributes }
+        before { put api_v1_industry_path(industry_id), params: { industry: valid_attributes } }
 
         it 'updates the record' do
-          expect(response.body).to be_empty
+          # expect(response.body).to be_empty
+          expect(json['industry_name']).to eq('Beverages')
         end
 
-        it 'returns status code 204' do
-          expect(response).to have_http_status(204)
+        it 'returns status code 200' do
+          expect(response).to have_http_status(200)
         end
       end
     end

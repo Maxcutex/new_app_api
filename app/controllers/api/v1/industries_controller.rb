@@ -10,44 +10,45 @@ module Api
 
       # GET /industries
       def index
-        @industries = Industry.all
-        render json: @industries
+        @api_v1_industries = Industry.all
+        render json: @api_v1_industries
       end
 
       # GET /industries/1
       def show
-        render json: @industry, status: status
+        render json: @api_v1_industry
       end
 
       # POST /industries
       def create
-        @industry = Industry.new(industry_params)
-        if @industry.save
-          render json: @industry, status: :created, location: @industry
+        
+        @api_v1_industry = Industry.new(industry_params)
+        if @api_v1_industry.save
+          render json: @api_v1_industry, status: :created #, location: @api_v1_industry
         else
-          render json: @industry.errors, status: :unprocessable_entity
+          render json: @api_v1_industry.errors, status: :unprocessable_entity
         end
       end
 
       # PATCH/PUT /industries/1
       def update
-        if @industry.update(industry_params)
-          render json: @industry
+        if @api_v1_industry.update(industry_params)
+          render json: @api_v1_industry
         else
-          render json: @industry.errors, status: :unprocessable_entity
+          render json: @api_v1_industry.errors, status: :unprocessable_entity
         end
       end
 
       # DELETE /industries/1
       def destroy
-        @industry.destroy
+        @api_v1_industry.destroy
       end
 
       private
 
       # Use callbacks to share common setup or constraints between actions.
       def set_industry
-        @industry = Industry.find(params[:id])
+        @api_v1_industry = Industry.find(params[:id])
       end
 
       # Only allow a trusted parameter "white list" through.
