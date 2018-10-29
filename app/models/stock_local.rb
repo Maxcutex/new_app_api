@@ -1,0 +1,2 @@
+class StockLocal < ApplicationRecord
+end
