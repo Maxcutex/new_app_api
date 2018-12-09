@@ -40,6 +40,7 @@ RSpec.describe 'Industries', type: :request do
       let(:industry_id) { 100 }
 
       it 'returns status code 404' do
+        
         expect(response).to have_http_status(404)
       end
 

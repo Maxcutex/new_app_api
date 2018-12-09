@@ -6,6 +6,7 @@ module Api
   module V1
     # stock local controller
     class StockLocalsController < ApplicationController
+      
       before_action :set_stock_local, only: %i[show update destroy]
 
       # GET /stock_locals
@@ -25,7 +26,7 @@ module Api
         @stock_local = StockLocal.new(stock_local_params)
 
         if @stock_local.save
-          render json: @stock_local, status: :created, location: @stock_local
+          render json: @stock_local, status: :created#, location: @stock_local
         else
           render json: @stock_local.errors, status: :unprocessable_entity
         end
@@ -50,19 +51,28 @@ module Api
       # Use callbacks to share common setup or constraints between actions.
       def set_stock_local
         @stock_local = StockLocal.find(params[:id])
+        set_industry
+        set_sub_sector
+      end
+
+      def set_industry
+        @api_v1_industry = Industry.find(@stock_local.industry_id) if @stock_local
+      end
+
+      def set_sub_sector
+        @sub_sector = SubSector.find(@stock_local.sub_sector_id) if @stock_local
       end
 
       # Only allow a trusted parameter "white list" through.
       def stock_local_params
-        params.require(:stock_local)
-              .permit(
+        params.require(:stock_local).permit(
                 :sec_code, :sec_name, :exchange_code, :asset_class_coce,
                 :address_1, :registrar, :capitalization,
                 :main_sector, :sub_sector, :contact, :description, :tier_code,
                 :par_value, :list_date, :outstanding_shares, :grp_code,
                 :address_2, :address_3, :state_code, :website, :email, :gsm,
                 :regis_close, :year_end, :logo, :shares_in_issue,
-                :view_count, :fax_no, :land_tel
+                :view_count, :fax_no, :land_tel, :industry_id, :sub_sector_id
               )
       end
     end

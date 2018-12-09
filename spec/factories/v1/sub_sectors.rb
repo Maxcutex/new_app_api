@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :sub_sector do
     sub_sector_name { "MyString" }
-    main_sector { nil }
+    association :main_sector, factory: :main_sector
   end
 end

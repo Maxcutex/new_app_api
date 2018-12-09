@@ -23,7 +23,7 @@ module Api
         @main_sector = MainSector.new(main_sector_params)
 
         if @main_sector.save
-          render json: @main_sector, status: :created, location: @main_sector
+          render json: @main_sector, status: :created#, location: @main_sector
         else
           render json: @main_sector.errors, status: :unprocessable_entity
         end
