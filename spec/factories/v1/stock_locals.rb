@@ -4,8 +4,6 @@ FactoryBot.define do
     sec_name { "MyString" }
     exchange_code { "MyString" }
     asset_class_coce { "MyString" }
-    main_sector { 1 }
-    sub_sector { 1 }
     contact { "MyString" }
     description { "MyString" }
     tier_code { "MyString" }
@@ -29,5 +27,7 @@ FactoryBot.define do
     shares_in_issue { 1 }
     capitalization { 1 }
     view_count { 1 }
+    association :industry, factory: :industry
+    association :sub_sector, factory: :sub_sector
   end
 end

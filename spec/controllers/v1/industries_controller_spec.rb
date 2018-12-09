@@ -23,10 +23,10 @@ require 'rails_helper'
 # removed from Rails core in Rails 5, but can be added back in via the
 # `rails-controller-testing` gem.
 
-RSpec.describe StockLocalsController, type: :controller do
+RSpec.describe Api::V1::IndustriesController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
-  # StockLocal. As you add validations to StockLocal, be sure to
+  # Industry. As you add validations to Industry, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) {
     skip("Add a hash of attributes valid for your model")
@@ -38,12 +38,12 @@ RSpec.describe StockLocalsController, type: :controller do
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
-  # StockLocalsController. Be sure to keep this updated too.
+  # IndustriesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
   describe "GET #index" do
     it "returns a success response" do
-      stock_local = StockLocal.create! valid_attributes
+      industry = Industry.create! valid_attributes
       get :index, params: {}, session: valid_session
       expect(response).to be_successful
     end
@@ -51,33 +51,33 @@ RSpec.describe StockLocalsController, type: :controller do
 
   describe "GET #show" do
     it "returns a success response" do
-      stock_local = StockLocal.create! valid_attributes
-      get :show, params: {id: stock_local.to_param}, session: valid_session
+      industry = Industry.create! valid_attributes
+      get :show, params: {id: industry.to_param}, session: valid_session
       expect(response).to be_successful
     end
   end
 
   describe "POST #create" do
     context "with valid params" do
-      it "creates a new StockLocal" do
+      it "creates a new Industry" do
         expect {
-          post :create, params: {stock_local: valid_attributes}, session: valid_session
-        }.to change(StockLocal, :count).by(1)
+          post :create, params: {industry: valid_attributes}, session: valid_session
+        }.to change(Industry, :count).by(1)
       end
 
-      it "renders a JSON response with the new stock_local" do
+      it "renders a JSON response with the new industry" do
 
-        post :create, params: {stock_local: valid_attributes}, session: valid_session
+        post :create, params: {industry: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:created)
         expect(response.content_type).to eq('application/json')
-        expect(response.location).to eq(stock_local_url(StockLocal.last))
+        expect(response.location).to eq(industry_url(Industry.last))
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the new stock_local" do
+      it "renders a JSON response with errors for the new industry" do
 
-        post :create, params: {stock_local: invalid_attributes}, session: valid_session
+        post :create, params: {industry: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -90,27 +90,27 @@ RSpec.describe StockLocalsController, type: :controller do
         skip("Add a hash of attributes valid for your model")
       }
 
-      it "updates the requested stock_local" do
-        stock_local = StockLocal.create! valid_attributes
-        put :update, params: {id: stock_local.to_param, stock_local: new_attributes}, session: valid_session
-        stock_local.reload
+      it "updates the requested industry" do
+        industry = Industry.create! valid_attributes
+        put :update, params: {id: industry.to_param, industry: new_attributes}, session: valid_session
+        industry.reload
         skip("Add assertions for updated state")
       end
 
-      it "renders a JSON response with the stock_local" do
-        stock_local = StockLocal.create! valid_attributes
+      it "renders a JSON response with the industry" do
+        industry = Industry.create! valid_attributes
 
-        put :update, params: {id: stock_local.to_param, stock_local: valid_attributes}, session: valid_session
+        put :update, params: {id: industry.to_param, industry: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:ok)
         expect(response.content_type).to eq('application/json')
       end
     end
 
     context "with invalid params" do
-      it "renders a JSON response with errors for the stock_local" do
-        stock_local = StockLocal.create! valid_attributes
+      it "renders a JSON response with errors for the industry" do
+        industry = Industry.create! valid_attributes
 
-        put :update, params: {id: stock_local.to_param, stock_local: invalid_attributes}, session: valid_session
+        put :update, params: {id: industry.to_param, industry: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
@@ -118,11 +118,11 @@ RSpec.describe StockLocalsController, type: :controller do
   end
 
   describe "DELETE #destroy" do
-    it "destroys the requested stock_local" do
-      stock_local = StockLocal.create! valid_attributes
+    it "destroys the requested industry" do
+      industry = Industry.create! valid_attributes
       expect {
-        delete :destroy, params: {id: stock_local.to_param}, session: valid_session
-      }.to change(StockLocal, :count).by(-1)
+        delete :destroy, params: {id: industry.to_param}, session: valid_session
+      }.to change(Industry, :count).by(-1)
     end
   end
 
