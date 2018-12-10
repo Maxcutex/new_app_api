@@ -3,7 +3,7 @@
 module Api
   module V1
     # stock local controller
-    class SubSectorsController < ApplicationController
+    class SubSectorsController < ApiController
       before_action :set_main_sector
       before_action :set_sub_sector, only: %i[show update destroy]
 
