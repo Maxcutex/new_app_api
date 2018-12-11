@@ -18,6 +18,7 @@ gem 'devise'
 gem 'cancancan'
 gem 'rolify'
 gem 'activeadmin'
+gem 'rubocop'
 # Use ActiveStorage variant
 # gem 'mini_magick', '~> 4.8'
 
