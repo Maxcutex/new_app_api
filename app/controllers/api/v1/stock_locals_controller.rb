@@ -5,7 +5,7 @@ module Api
   # module v1
   module V1
     # stock local controller
-    class StockLocalsController < ApplicationController
+    class StockLocalsController < ApiController
       
       before_action :set_stock_local, only: %i[show update destroy]
 

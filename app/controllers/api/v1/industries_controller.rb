@@ -5,7 +5,7 @@ module Api
   # module V1
   module V1
     # Industries controller
-    class IndustriesController < ApplicationController
+    class IndustriesController < ApiController
       before_action :set_industry, only: %i[show update destroy]
 
       # GET /industries
