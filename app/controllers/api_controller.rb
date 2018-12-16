@@ -3,14 +3,6 @@ class ApiController < ActionController::API
   include Response
   include ExceptionHandler
 
-  def render_resource(resource)
-    if resource.errors.empty?
-      render json: resource
-    else
-      validation_error(resource)
-    end
-  end
-
   def validation_error(resource)
     render json: {
       errors: [
@@ -22,5 +14,14 @@ class ApiController < ActionController::API
         }
       ]
     }, status: :bad_request
+  end
+
+  private
+  def render_resource(resource)
+    if resource.errors.empty?
+      render json: resource
+    else
+      validation_error(resource)
+    end
   end
 end
