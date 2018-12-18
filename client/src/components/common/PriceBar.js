@@ -1,5 +1,5 @@
 import React from "react";
-export default () => {
+const PriceBar = () => {
   return (
     <section className="img-top veil reveal-lg-block text-center">
       <div className="shell">
@@ -17,3 +17,4 @@ export default () => {
     </section>
   );
 };
+export default PriceBar;

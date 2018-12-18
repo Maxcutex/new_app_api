@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App should render App correctly 1`] = `
+exports[`Home Test should render Home correctly 1`] = `
 ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <App />,
+  Symbol(enzyme.__unrendered__): <Home />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -18,9 +18,9 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": Array [
-        <PriceBar />,
-        <Header />,
-        <Home />,
+        <FeaturedSection />,
+        <WorldSection />,
+        <OpinionSection />,
       ],
     },
     "ref": null,
@@ -62,9 +62,9 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": Array [
-          <PriceBar />,
-          <Header />,
-          <Home />,
+          <FeaturedSection />,
+          <WorldSection />,
+          <OpinionSection />,
         ],
       },
       "ref": null,

@@ -1,7 +1,7 @@
 import React from "react";
 import FeaturedMainNews from "./FeaturedMainNews";
 import FeaturedSideNews from "./FeaturedSideNews";
-export default () => {
+const FeaturedSection = () => {
   return (
     <section className="section-xs bg-white">
       <div className="shell">
@@ -24,3 +24,4 @@ export default () => {
     </section>
   );
 };
+export default FeaturedSection;

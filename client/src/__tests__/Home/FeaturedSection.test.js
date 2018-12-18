@@ -6,7 +6,7 @@ import FeaturedSection from "../../components/Home/FeaturedSection";
 
 describe("Featured Component", () => {
   it("renders without crashing", () => {
-    const component = shallow(<FeaturedSection />);
+    let component = shallow(<FeaturedSection />);
   });
   //   it("has shows three news components", () => {
   //     const component = shallow(<Header />);

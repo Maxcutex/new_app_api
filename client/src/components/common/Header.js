@@ -1,7 +1,7 @@
 import React from "react";
-export default () => {
+const Header = () => {
   return (
-    <div className="page-header header-home-1">
+    <header className="page-header header-home-1">
       <div className="rd-navbar-wrap">
         <nav
           className="rd-navbar rd-navbar-default"
@@ -161,6 +161,8 @@ export default () => {
           </div>
         </nav>
       </div>
-    </div>
+    </header>
   );
 };
+
+export default Header;

@@ -29,11 +29,11 @@ export default () => {
           </ul>
           <div className="share-block">
             <div className="soc-icon">
-              <a className="icon fa-twitter" href="#" />
-              <a className="icon fa-facebook-square" href="#" />
-              <a className="icon fa-instagram" href="#" />
-              <a className="icon fa-pinterest" href="#" />
-              <a className="icon fa-youtube-play" href="#" />
+              <a className="icon fa-twitter" href="/" />
+              <a className="icon fa-facebook-square" href="/" />
+              <a className="icon fa-instagram" href="/" />
+              <a className="icon fa-pinterest" href="/" />
+              <a className="icon fa-youtube-play" href="/" />
             </div>
             <span className="icon fa-share-alt" />
           </div>

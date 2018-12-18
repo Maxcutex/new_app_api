@@ -3,15 +3,16 @@ import { shallow } from "enzyme";
 import App from "../components/App";
 
 describe("App", () => {
-  it("should render Header correctly", () => {
-    let wrapper = shallow(<App />);
+  let wrapper;
+  beforeEach(() => {
+    wrapper = shallow(<App />);
+  });
+  it("should render App correctly", () => {
     expect(wrapper).toMatchSnapshot();
   });
 
-  it("should render Header correctly", () => {
-    let wrapper = shallow(<App />);
+  it("should render Home correctly", () => {
     const home = wrapper.find("Home");
-    console.log(home);
     expect(home.length).toBe(1);
   });
 });
