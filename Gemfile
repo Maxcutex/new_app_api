@@ -45,6 +45,7 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
   gem 'faker'
+  gem 'coveralls', require: false
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
 end
