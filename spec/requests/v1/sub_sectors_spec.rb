@@ -70,7 +70,7 @@ RSpec.describe "SubSectors", type: :request do
 
   # Test suite for PUT /api/v1/main_sectors/:main_sector_id/sub_sectors
   describe 'POST /api/v1/main_sectors/:main_sector_id/sub_sectors' do
-    let(:valid_attributes) { { main_sector_id: 1, sub_sector_name: 'mysubsector' } }
+    let(:valid_attributes) { { main_sector_id: main_sector.id, sub_sector_name: 'mysubsector' } }
     let(:invalid_attributes) { { main_sector_id: nil, sub_sector_name: 'mysubsector' } }
 
     context 'when request attributes are valid' do
@@ -96,7 +96,7 @@ RSpec.describe "SubSectors", type: :request do
 
   # Test suite for PUT /api/v1/main_sectors/:main_sector_id/sub_sectors/:id
   describe 'PUT /api/v1/main_sectors/:main_sector_id/sub_sectors/:id' do
-    let(:valid_attributes) {  { main_sector_id: 1, sub_sector_name: 'mysubsectorNew', id: id}}
+    let(:valid_attributes) {  { main_sector_id: main_sector.id, sub_sector_name: 'mysubsectorNew', id: id}}
 
     before { put "/api/v1/main_sectors/#{main_sector_id}/sub_sectors/#{id}", params: { sub_sector: valid_attributes } }
 

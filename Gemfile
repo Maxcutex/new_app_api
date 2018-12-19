@@ -46,6 +46,7 @@ group :development, :test do
   gem 'database_cleaner', git: 'https://github.com/bmabey/database_cleaner.git'
   gem 'faker'
   gem 'coveralls', require: false
+  gem 'pry'
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
 end
