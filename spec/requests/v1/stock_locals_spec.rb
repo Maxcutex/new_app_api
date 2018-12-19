@@ -92,7 +92,7 @@ RSpec.describe "StockLocals", type: :request do
     capitalization: 1,
     view_count: 1,
     industry_id: 0,
-    sub_sector_id: 1
+    sub_sector_id: sub_sector.id
     }}
 
     context 'when request attributes are valid' do
