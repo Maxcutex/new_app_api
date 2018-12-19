@@ -118,18 +118,17 @@ RSpec.describe "StockLocals", type: :request do
 
   # Test suite for PUT /api/v1/stock_locals/:id
   describe 'PUT /api/v1/stock_locals/:id' do
-    let(:valid_attributes) { attributes_for(:stock_local) }
-
+    let(:valid_attributes) { attributes_for(:stock_local, sub_sector_id: SubSector.last.id) }
     before { put "/api/v1/stock_locals/#{id}", params: { stock_local: valid_attributes } }
 
-    context 'when sub_sector exists' do
+    context 'when stock local exists' do
       it 'returns status code 200' do
         expect(response).to have_http_status(200)
       end
 
-      it 'updates the sub_sector' do
-        updated_sub_sector = SubSector.find(id)
-        expect(updated_sub_sector.sub_sector_name).to match(/MyString/)
+      it 'updates the stock local' do
+        stock_local = StockLocal.find(id)
+        expect(stock_local.sub_sector_id).to match(SubSector.last.id)
       end
     end
 
