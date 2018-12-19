@@ -43,19 +43,7 @@ RSpec.configure do |config|
 
   config.filter_rails_from_backtrace!
 
-  config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
-    DatabaseCleaner.strategy = :transaction
-  end
-
-  config.around(:each) do |example|
-    DatabaseCleaner.cleaning do
-      example.run
-    end
-  end
-  config.after(:suite) do
-    DatabaseCleaner.clean_with(:truncation)
-    DatabaseCleaner.strategy = :transaction
-  end
+  
+  
   config.include Devise::Test::ControllerHelpers, type: :controller
 end

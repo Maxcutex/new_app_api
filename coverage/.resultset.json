@@ -1048,6 +1048,24 @@
         null,
         null
       ],
+      "/home/andela/Projects/Ruby/news_app_api/spec/support/database_cleaner.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        149,
+        149,
+        null,
+        null,
+        0,
+        null,
+        null
+      ],
       "/home/andela/Projects/Ruby/news_app_api/spec/support/factorybot/attributes_for_with_foreign_keys.rb": [
         1,
         1,
@@ -2955,6 +2973,6 @@
         null
       ]
     },
-    "timestamp": 1545235114
+    "timestamp": 1545236721
   }
 }
