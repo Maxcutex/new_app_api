@@ -4,14 +4,15 @@ require 'rails_helper'
 
 RSpec.describe Api::V1::SubSectorsController, type: :routing do
   let!(:main_sector) { create(:main_sector) }
-  let!(:sub_sector) { create(:sub_sector, main_sector_id: main_sector.id) } 
+  let!(:sub_sector) { create(:sub_sector, main_sector_id: main_sector.id) }
 
   describe 'routing' do
     it 'routes to #index' do
+      
       expect(
         get: "/api/v1/main_sectors/#{main_sector.id}/sub_sectors"
       ).to route_to(
-        controller: 'api/v1/sub_sectors', action: 'index', main_sector_id: main_sector.id
+        controller: 'api/v1/sub_sectors', action: 'index', main_sector_id: main_sector.id.to_s
       )
     end
 
@@ -20,7 +21,7 @@ RSpec.describe Api::V1::SubSectorsController, type: :routing do
         get: "/api/v1/main_sectors/#{main_sector.id}/sub_sectors/1"
       ).to route_to(
         controller: 'api/v1/sub_sectors', action: 'show',
-        main_sector_id: main_sector.id, id: sub_sector.id
+        main_sector_id: main_sector.id.to_s, id: sub_sector.id.to_s
       )
     end
 
@@ -28,7 +29,7 @@ RSpec.describe Api::V1::SubSectorsController, type: :routing do
       expect(
         post: "/api/v1/main_sectors/#{main_sector.id}/sub_sectors"
       ).to route_to(
-        controller: 'api/v1/sub_sectors', action: 'create', main_sector_id: main_sector.id
+        controller: 'api/v1/sub_sectors', action: 'create', main_sector_id: main_sector.id.to_s
       )
     end
 
@@ -37,7 +38,7 @@ RSpec.describe Api::V1::SubSectorsController, type: :routing do
         put: "/api/v1/main_sectors/#{main_sector.id}/sub_sectors/1"
       ).to route_to(
         controller: 'api/v1/sub_sectors', action: 'update',
-        main_sector_id: main_sector.id, id: sub_sector.id
+        main_sector_id: main_sector.id.to_s, id: sub_sector.id.to_s
       )
     end
 
@@ -46,7 +47,7 @@ RSpec.describe Api::V1::SubSectorsController, type: :routing do
         patch: "/api/v1/main_sectors/#{main_sector.id}/sub_sectors/1"
       ).to route_to(
         controller: 'api/v1/sub_sectors', action: 'update',
-        main_sector_id: main_sector.id, id: sub_sector.id
+        main_sector_id: main_sector.id.to_s, id: sub_sector.id.to_s
       )
     end
 
@@ -55,7 +56,7 @@ RSpec.describe Api::V1::SubSectorsController, type: :routing do
         delete: "/api/v1/main_sectors/#{main_sector.id}/sub_sectors/1"
       ).to route_to(
         controller: 'api/v1/sub_sectors', action: 'destroy',
-        main_sector_id: main_sector.id, id: sub_sector.id
+        main_sector_id: main_sector.id.to_s, id: sub_sector.id.to_s
       )
     end
   end

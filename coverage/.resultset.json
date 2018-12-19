@@ -894,7 +894,7 @@
       "/home/andela/Projects/Ruby/news_app_api/spec/factories/v1/sub_sectors.rb": [
         1,
         1,
-        535,
+        541,
         1,
         null,
         null
@@ -2930,9 +2930,11 @@
         null,
         1,
         7,
+        7,
         null,
         1,
         1,
+        null,
         1,
         null,
         null,
@@ -2987,6 +2989,6 @@
         null
       ]
     },
-    "timestamp": 1545252883
+    "timestamp": 1545254425
   }
 }
