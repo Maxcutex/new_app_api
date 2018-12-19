@@ -53,6 +53,9 @@ RSpec.configure do |config|
       example.run
     end
   end
-
+  config.after(:suite) do
+    DatabaseCleaner.clean_with(:truncation)
+    DatabaseCleaner.strategy = :transaction
+  end
   config.include Devise::Test::ControllerHelpers, type: :controller
 end
