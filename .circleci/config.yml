@@ -27,20 +27,6 @@ jobs:
           root: tmp
           paths:
             - cc-test-reporter
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "client/package.json" }}
-            - v1-dependencies-
-      - run:
-          name: install dependencies
-          command: cd client/ && npm install
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "client/package.json" }}
-      - run:
-          name: run tests
-          command: cd client && npm test
   backend-tests:
     <<: *defaults
     steps:
@@ -61,7 +47,22 @@ jobs:
           root: tmp
           paths:
             - codeclimate.backend.json
-
+  frontend-tests:
+    <<: *defaults
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/news_app_api/tmp
+      - run: cd client/ && npm install
+      - run:
+          name: Run frontend testss
+          command: |
+            npm test
+            ./tmp/cc-test-reporter format-coverage -t lcov -o tmp/codeclimate.frontend.json coverage/frontend/lcov.info
+      - persist_to_workspace:
+          root: tmp
+          paths:
+            - codeclimate.frontend.json
   upload-coverage:
     <<: *defaults
     environment:
@@ -83,6 +84,10 @@ workflows:
       - backend-tests:
           requires:
             - build
+      - frontend-tests:
+          requires:
+            - build
       - upload-coverage:
           requires:
             - backend-tests
+            - frontend-tests
