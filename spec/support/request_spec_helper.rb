@@ -13,6 +13,9 @@ module RequestSpecHelper
 
   def sign_in(resource)
     login_as(resource, scope: warden_scope(resource))
+    
+    binding.pry
+    
   end
 
   def sign_out(resource)

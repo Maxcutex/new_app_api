@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'POST /api/v1/login', type: :controller do
+RSpec.describe 'POST /api/v1/login', type: :request do
   let(:user) { create(:user) }
   let(:url) { '/api/v1/login' }
   let(:params) do
@@ -14,17 +14,18 @@ RSpec.describe 'POST /api/v1/login', type: :controller do
  # let(:valid_session) {  SessionController.new  }
   context 'when params are correct' do
     before do
-      sign_in(user)
+      #post url, params: params #, session: valid_session
     end
 
     it 'returns 200' do
+      sign_in(user)
+      
+      binding.pry
+      
       expect(response).to have_http_status(200)
     end
 
     it 'returns JTW token in authorization header' do
-      
-      binding.pry
-      
       expect(response.headers['Authorization']).to be_present
     end
 
@@ -43,11 +44,11 @@ RSpec.describe 'POST /api/v1/login', type: :controller do
   end
 end
 
-RSpec.describe 'DELETE /api/v1/logout', type: :controler do
+RSpec.describe 'DELETE /api/v1/logout', type: :request do
   let(:url) { '/api/v1/logout' }
 
   it 'returns 204, no content' do
-    sign_out(user)
+    delete url
     expect(response).to have_http_status(204)
   end
 end
