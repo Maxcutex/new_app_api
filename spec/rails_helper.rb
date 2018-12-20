@@ -11,7 +11,7 @@ require 'rspec/rails'
 require 'devise'
 Dir[Rails.root.join('spec', 'support', '**', '*.rb')].each { |f| require f }
 
- 
+
 begin
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
@@ -32,7 +32,7 @@ RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-
+  
   config.include RequestSpecHelper, type: :request
 
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -43,7 +43,7 @@ RSpec.configure do |config|
 
   config.filter_rails_from_backtrace!
 
-   
-  
   config.include Devise::Test::ControllerHelpers, type: :controller
+  #config.include Devise::Test::ControllerHelpers, type: :request
+  config.include Devise::Test::IntegrationHelpers, type: :request
 end
